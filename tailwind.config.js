@@ -12,6 +12,11 @@ module.exports = {
       fontFamily: {
         sans: ["var(--font-outfit)", ...defaultTheme.fontFamily.sans],
       },
+      screens: {
+        sm: "375px",
+        md: "768px",
+        lg: "1440px",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],

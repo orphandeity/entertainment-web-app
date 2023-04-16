@@ -7,8 +7,8 @@ export default function Home() {
         <title>Frontend Mentor | Entertainment Web App</title>
         <meta name="description" content="Frontend Mentor Challenge Project" />
       </Head>
-      <main>
-        <h1 className="p-8 text-9xl">👻</h1>
+      <main className="grid w-full place-content-center">
+        <h1 className="text-9xl">👻</h1>
       </main>
     </>
   );
