@@ -7,7 +7,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <div className="flex min-h-screen flex-col lg:flex-row">
+    <div className={styles.layout}>
       <Dashboard />
       {children}
     </div>

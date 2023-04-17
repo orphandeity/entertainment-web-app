@@ -17,6 +17,7 @@
   --font-weight-light: 200;
   --font-weight-medium: 500;
 
+  --radius-xs: 0.5rem;
   --radius-sm: 0.625rem;
   --radius-lg: 1.25rem;
 }
@@ -24,4 +25,26 @@
 body {
   background-color: var(--color-dark-blue);
   color: #fff;
+}
+
+h2 {
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-light);
+  letter-spacing: -0.02rem;
+}
+
+h3 {
+  font-size: var(--font-body-md);
+  font-weight: var(--font-weight-medium);
+}
+
+@media (min-width: 768px) {
+  h2 {
+    font-size: var(--font-heading-lg);
+    letter-spacing: normal;
+  }
+
+  h3 {
+    font-size: var(--font-heading-sm);
+  }
 }

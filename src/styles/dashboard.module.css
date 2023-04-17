@@ -1,4 +1,8 @@
-/* container */
+.layout {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
 .dashboard {
   background-color: var(--color-semi-dark-blue);
   display: flex;
@@ -48,10 +52,16 @@
 
 /* desktop styles */
 @media (min-width: 1440px) {
+  .layout {
+    display: grid;
+    grid-template-columns: 9.75rem auto;
+  }
+
   .dashboard {
     flex-flow: column nowrap;
     padding: 2rem;
     margin: 2rem;
+    height: calc(100vh - 4rem);
     border-radius: var(--radius-lg);
   }
 

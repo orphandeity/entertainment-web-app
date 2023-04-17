@@ -10,10 +10,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        _red: "var(--color-red)",
-        "_dark-blue": "var(--color-dark-blue)",
-        "_semi-dark-blue": "var(--color-semi-dark-blue)",
-        "_greyish-blue": "var(--color-greyish-blue)",
+        _red: "#fc4747",
+        "_dark-blue": "#10141e",
+        "_semi-dark-blue": "#161d2f",
+        "_greyish-blue": "#5a698f",
       },
       fontFamily: {
         sans: ["var(--font-outfit)", ...defaultTheme.fontFamily.sans],
