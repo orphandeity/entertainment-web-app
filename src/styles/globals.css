@@ -14,7 +14,7 @@
   --font-body-md: 0.9375rem;
   --font-body-sm: 0.8125rem;
 
-  --font-weight-light: 300;
+  --font-weight-light: 200;
   --font-weight-medium: 500;
 
   --radius-sm: 0.625rem;
@@ -23,6 +23,5 @@
 
 body {
   background-color: var(--color-dark-blue);
-  font-family: "Outfit", sans-serif;
   color: #fff;
 }

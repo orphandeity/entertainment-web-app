@@ -7,7 +7,7 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={`${outfit.variable}`}>
+    <div className={`${outfit.variable} font-sans`}>
       <RootLayout>
         <Component {...pageProps} />
       </RootLayout>
