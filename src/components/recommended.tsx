@@ -17,9 +17,9 @@ export default function Recommended() {
   }, []);
 
   return (
-    <section className="mx-4">
+    <section className="mx-4 space-y-6 md:mx-6 lg:ml-0">
       <h2>Recommended for you</h2>
-      <ul className="flex flex-wrap gap-[15px]">
+      <ul className="flex flex-wrap gap-x-[15px] gap-y-4 md:gap-x-[1.875rem] md:gap-y-6 lg:gap-x-10 lg:gap-y-8">
         {recommended.map((media) => (
           <li key={media.title}>
             <Thumbnail media={media} />
@@ -41,23 +41,23 @@ const Thumbnail = ({ media }: { media: IMedia }) => {
     : media.thumbnail.regular.small;
 
   return (
-    <figure>
-      <div className="relative h-[6.875rem] w-[10.25rem] overflow-hidden rounded-lg">
+    <figure className="flex flex-col gap-2">
+      <div className="relative h-[6.875rem] w-[10.25rem] overflow-hidden rounded-lg md:h-[8.75rem] md:w-[13.75rem] lg:h-[10.875rem] lg:w-[17.5rem]">
         <Image src={image} alt="" fill />
 
-        <div className="absolute right-2 top-2 grid h-8 w-8 place-content-center rounded-full bg-_dark-blue/50">
+        <div className="absolute right-2 top-2 grid h-8 w-8 place-content-center rounded-full bg-_dark-blue/50 md:right-4 md:top-4">
           <Image src={bookmarkFull} alt="" />
         </div>
       </div>
-      <figcaption>
-        <p className="flex items-center gap-2 text-[11px] font-extralight opacity-75">
+      <figcaption className="flex flex-col gap-[0.3125rem]">
+        <p className="flex items-center gap-2 text-[11px] font-extralight opacity-75 md:text-body-sm">
           <span>{media.year}</span>
           <span>•</span>
           <span>{media.category}</span>
           <span>•</span>
           <span>{media.rating}</span>
         </p>
-        <h4 className="text-sm font-medium">{media.title}</h4>
+        <h4 className="text-sm font-medium md:text-lg">{media.title}</h4>
       </figcaption>
     </figure>
   );
