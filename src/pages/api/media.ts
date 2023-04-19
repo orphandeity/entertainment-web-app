@@ -30,6 +30,11 @@ export default function handler(
     const tvSeries = data.filter((d) => d.category === "TV Series");
 
     res.status(200).json({ media: tvSeries });
+  } else if (req.query.type === "bookmarked") {
+    // filter and return data where isBookmarked = true
+    const bookmarked = data.filter((d) => d.isBookmarked);
+
+    res.status(200).json({ media: bookmarked });
   } else {
     // return all data
     res.status(200).json({ media: data });

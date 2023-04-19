@@ -14,7 +14,7 @@ export default function Recommended() {
   }, []);
 
   return (
-    <section className="mx-4 space-y-6 md:mx-6 lg:ml-0">
+    <section className="mx-4 space-y-6 md:mx-6 lg:mx-0">
       <h2>Recommended for you</h2>
       <ul className="flex flex-wrap gap-x-[15px] gap-y-4 md:gap-x-[1.875rem] md:gap-y-6 lg:gap-x-10 lg:gap-y-8">
         {recommended.map((media) => (

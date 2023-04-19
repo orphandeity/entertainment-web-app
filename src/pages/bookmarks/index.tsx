@@ -1,15 +1,11 @@
-import SearchBar from "@/components/ui/search";
+import { useState, useEffect } from "react";
 import Head from "next/head";
+import SearchBar from "@/components/ui/search";
+import Bookmarked from "@/components/bookmarked";
 
-interface IBookmarksProps {
-  searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string | undefined>>;
-}
+export default function Bookmarks() {
+  const [bookmarkSearch, setBookmarkSearch] = useState<string>("");
 
-export default function Bookmarks({
-  searchQuery,
-  setSearchQuery,
-}: IBookmarksProps) {
   return (
     <>
       <Head>
@@ -19,11 +15,10 @@ export default function Bookmarks({
       <main className="w-full overflow-hidden">
         <SearchBar
           placeholder="Search for bookmarked shows"
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
+          searchQuery={bookmarkSearch}
+          setSearchQuery={setBookmarkSearch}
         />
-        <h2>Bookmarked Movies</h2>
-        <h2>Bookmarked TV Series</h2>
+        <Bookmarked />
       </main>
     </>
   );
