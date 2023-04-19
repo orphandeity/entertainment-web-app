@@ -4,6 +4,7 @@ import logo from "@/assets/logo.svg";
 import user from "@/assets/image-avatar.png";
 
 import styles from "@/styles/dashboard.module.css";
+import Link from "next/link";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -19,21 +20,27 @@ export default function Dashboard() {
               currentPage === "/" ? "text-_white" : "text-_greyish-blue"
             }`}
           >
-            <HomeIcon />
+            <Link href={"/"}>
+              <HomeIcon />
+            </Link>
           </li>
           <li
             className={`cursor-pointer transition-colors hover:text-_red ${
               currentPage === "/movies" ? "text-_white" : "text-_greyish-blue"
             }`}
           >
-            <MoviesIcon />
+            <Link href={"/movies"}>
+              <MoviesIcon />
+            </Link>
           </li>
           <li
             className={`cursor-pointer transition-colors hover:text-_red ${
               currentPage === "/tv" ? "text-_white" : "text-_greyish-blue"
             }`}
           >
-            <TVIcon />
+            <Link href={"/tv"}>
+              <TVIcon />
+            </Link>
           </li>
           <li
             className={`cursor-pointer transition-colors hover:text-_red ${
@@ -42,7 +49,9 @@ export default function Dashboard() {
                 : "text-_greyish-blue"
             }`}
           >
-            <BookmarkIcon />
+            <Link href={"/bookmarks"}>
+              <BookmarkIcon />
+            </Link>
           </li>
         </ul>
       </nav>

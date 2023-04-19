@@ -1,5 +1,5 @@
 import styles from "@/styles/dashboard.module.css";
-import Dashboard from "./dashboard";
+import Dashboard from "./ui/dashboard";
 
 interface RootLayoutProps {
   children: React.ReactNode;

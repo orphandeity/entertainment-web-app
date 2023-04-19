@@ -1,7 +1,7 @@
 import type { GetStaticProps } from "next";
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import SearchBar from "@/components/search";
+import SearchBar from "@/components/ui/search";
 import Trending from "@/components/trending";
 import Recommended from "@/components/recommended";
 

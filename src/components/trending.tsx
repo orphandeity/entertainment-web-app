@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useMediaQuery from "@/lib/useMediaQuery";
 import Image from "next/image";
+import Hover from "./ui/hover";
 
 export default function Trending() {
   const [trending, setTrending] = useState<IMedia[]>([]);
@@ -41,22 +42,24 @@ const Thumbnail = ({ media }: { media: IMedia }) => {
     : media.thumbnail.trending?.large;
 
   return (
-    <figure className="relative h-[8.75rem] w-[15rem] overflow-hidden rounded-lg md:h-[14.375rem] md:w-[29.375rem]">
-      <Image src={image} alt="" fill />
-      <figcaption className="absolute bottom-0 flex w-full flex-col gap-1 bg-gradient-to-t from-black/75 p-4 md:p-6">
-        <p className="flex items-center gap-2 text-xs font-extralight opacity-75 md:text-body-md">
-          <span>{media.year}</span>
-          <span>•</span>
-          <span>{media.category}</span>
-          <span>•</span>
-          <span>{media.rating}</span>
-        </p>
-        <h3>{media.title}</h3>
-      </figcaption>
-      <div className="absolute right-2 top-2 grid h-8 w-8 cursor-pointer place-content-center rounded-full bg-_dark-blue/50 p-2 transition-all hover:bg-white hover:text-_dark-blue md:right-6 md:top-4">
-        <BookmarkEmpty />
-      </div>
-    </figure>
+    <Hover>
+      <figure className="relative h-[8.75rem] w-[15rem] overflow-hidden rounded-lg md:h-[14.375rem] md:w-[29.375rem]">
+        <Image src={image} alt="" fill />
+        <figcaption className="absolute bottom-0 z-50 flex w-full flex-col gap-1 bg-gradient-to-t from-black/75 p-4 md:p-6">
+          <p className="flex items-center gap-2 text-xs font-extralight opacity-75 md:text-body-md">
+            <span>{media.year}</span>
+            <span>•</span>
+            <span>{media.category}</span>
+            <span>•</span>
+            <span>{media.rating}</span>
+          </p>
+          <h3>{media.title}</h3>
+        </figcaption>
+        <div className="absolute right-2 top-2 z-50 grid h-8 w-8 cursor-pointer place-content-center rounded-full bg-_dark-blue/50 p-2 transition-all hover:bg-white hover:text-_dark-blue md:right-6 md:top-4">
+          <BookmarkEmpty />
+        </div>
+      </figure>
+    </Hover>
   );
 };
 

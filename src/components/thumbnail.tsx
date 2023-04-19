@@ -1,5 +1,6 @@
 import useMediaQuery from "@/lib/useMediaQuery";
 import Image from "next/image";
+import Hover from "./ui/hover";
 
 export default function Thumbnail({ data }: { data: IMedia }) {
   const tablet = useMediaQuery("(min-width: 768px)");
@@ -13,14 +14,16 @@ export default function Thumbnail({ data }: { data: IMedia }) {
 
   return (
     <figure className="flex flex-col gap-2">
-      <div className="relative h-[6.875rem] w-[10.25rem] overflow-hidden rounded-lg md:h-[8.75rem] md:w-[13.75rem] lg:h-[10.875rem] lg:w-[17.5rem]">
-        <Image src={image} alt="" fill />
+      <Hover>
+        <div className="relative h-[6.875rem] w-[10.25rem] overflow-hidden rounded-lg md:h-[8.75rem] md:w-[13.75rem] lg:h-[10.875rem] lg:w-[17.5rem]">
+          <Image src={image} alt="" fill />
 
-        <div className="absolute right-2 top-2 grid h-8 w-8 cursor-pointer place-content-center rounded-full bg-_dark-blue/50 transition-all hover:bg-white hover:text-_dark-blue md:right-4 md:top-4">
-          <BookmarkEmpty />
+          <div className="absolute right-2 top-2 z-50 grid h-8 w-8 cursor-pointer place-content-center rounded-full bg-_dark-blue/50 transition-all hover:bg-white hover:text-_dark-blue md:right-4 md:top-4">
+            <BookmarkEmpty />
+          </div>
         </div>
-      </div>
-      <figcaption className="flex flex-col gap-[0.3125rem]">
+      </Hover>
+      <figcaption className="z-50 flex flex-col gap-[0.3125rem]">
         <p className="flex items-center gap-2 text-[11px] font-extralight opacity-75 md:text-body-sm">
           <span>{data.year}</span>
           <span>•</span>
