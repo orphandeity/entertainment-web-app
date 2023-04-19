@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useAppSelector } from "@/lib/redux";
+import { selectMovies } from "@/lib/mediaSlice";
 import Head from "next/head";
-import SearchBar from "@/components/ui/search";
-import Movies from "@/components/movies";
+import SearchBar from "@/components/search";
+import MediaList from "@/components/mediaList";
 
 export default function MoviesPage() {
   const [movieSearch, setMovieSearch] = useState<string>("");
+
+  const movies = useAppSelector(selectMovies);
 
   return (
     <>
@@ -18,7 +22,7 @@ export default function MoviesPage() {
           searchQuery={movieSearch}
           setSearchQuery={setMovieSearch}
         />
-        <Movies />
+        <MediaList heading="Movies" media={movies} />
       </main>
     </>
   );

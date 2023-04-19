@@ -1,12 +1,14 @@
-import type { GetStaticProps } from "next";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useAppSelector } from "@/lib/redux";
+import { selectRecommended } from "@/lib/mediaSlice";
 import Head from "next/head";
-import SearchBar from "@/components/ui/search";
+import SearchBar from "@/components/search";
 import Trending from "@/components/trending";
-import Recommended from "@/components/recommended";
+import MediaList from "@/components/mediaList";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const recommended = useAppSelector(selectRecommended);
 
   return (
     <>
@@ -17,7 +19,7 @@ export default function Home() {
       <main className="w-full overflow-hidden">
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <Trending />
-        <Recommended />
+        <MediaList heading="Recommended for you" media={recommended} />
       </main>
     </>
   );

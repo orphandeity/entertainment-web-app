@@ -1,10 +1,14 @@
-import TVSeries from "@/components/tv";
-import SearchBar from "@/components/ui/search";
-import Head from "next/head";
 import { useState } from "react";
+import { useAppSelector } from "@/lib/redux";
+import { selectTVSeries } from "@/lib/mediaSlice";
+import Head from "next/head";
+import SearchBar from "@/components/search";
+import MediaList from "@/components/mediaList";
 
 export default function TVSeriesPage() {
   const [tvSearch, setTvSearch] = useState<string>("");
+
+  const tvSeries = useAppSelector(selectTVSeries);
 
   return (
     <>
@@ -18,7 +22,7 @@ export default function TVSeriesPage() {
           searchQuery={tvSearch}
           setSearchQuery={setTvSearch}
         />
-        <TVSeries />
+        <MediaList heading="TV Series" media={tvSeries} />
       </main>
     </>
   );

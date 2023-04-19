@@ -1,8 +1,13 @@
 import Image from "next/image";
 import useMediaQuery from "@/lib/useMediaQuery";
-import Hover from "./ui/hover";
+import Hover from "./hover";
+import { useAppDispatch } from "@/lib/redux";
+import { bookmark } from "@/lib/mediaSlice";
 
 export default function Thumbnail({ data }: { data: IMedia }) {
+  // redux dispatch action
+  const dispatch = useAppDispatch();
+
   // media query booleans
   const tablet = useMediaQuery("(min-width: 768px)");
   const desktop = useMediaQuery("(min-width: 1440px)");
@@ -22,7 +27,10 @@ export default function Thumbnail({ data }: { data: IMedia }) {
           <Image src={image} alt="" fill />
 
           {/* bookmark button */}
-          <div className="absolute right-2 top-2 z-50 grid h-8 w-8 cursor-pointer place-content-center rounded-full bg-_dark-blue/50 transition-all hover:bg-white hover:text-_dark-blue md:right-4 md:top-4">
+          <div
+            onClick={() => dispatch(bookmark(data.title))}
+            className="absolute right-2 top-2 z-50 grid h-8 w-8 cursor-pointer place-content-center rounded-full bg-_dark-blue/50 transition-all hover:bg-white hover:text-_dark-blue md:right-4 md:top-4"
+          >
             {data.isBookmarked ? <BookmarkFull /> : <BookmarkEmpty />}
           </div>
         </div>
