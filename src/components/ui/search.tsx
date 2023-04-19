@@ -3,7 +3,7 @@ import searchIcon from "@/assets/icon-search.svg";
 
 interface SearchBarProps {
   searchQuery: string | undefined;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   placeholder?: string;
 }
 

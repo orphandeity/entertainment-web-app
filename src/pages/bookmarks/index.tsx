@@ -1,7 +1,7 @@
 import SearchBar from "@/components/ui/search";
 import Head from "next/head";
 
-interface BookmarksPropsI {
+interface IBookmarksProps {
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
@@ -9,7 +9,7 @@ interface BookmarksPropsI {
 export default function Bookmarks({
   searchQuery,
   setSearchQuery,
-}: BookmarksPropsI) {
+}: IBookmarksProps) {
   return (
     <>
       <Head>

@@ -1,15 +1,11 @@
+import TVSeries from "@/components/tv";
 import SearchBar from "@/components/ui/search";
 import Head from "next/head";
+import { useState } from "react";
 
-interface TVSeriesPropsI {
-  searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string | undefined>>;
-}
+export default function TVSeriesPage() {
+  const [tvSearch, setTvSearch] = useState<string>("");
 
-export default function TVSeries({
-  searchQuery,
-  setSearchQuery,
-}: TVSeriesPropsI) {
   return (
     <>
       <Head>
@@ -19,12 +15,10 @@ export default function TVSeries({
       <main className="w-full overflow-hidden">
         <SearchBar
           placeholder="Search for TV series"
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
+          searchQuery={tvSearch}
+          setSearchQuery={setTvSearch}
         />
-        <section>
-          <h2>TV Series</h2>
-        </section>
+        <TVSeries />
       </main>
     </>
   );

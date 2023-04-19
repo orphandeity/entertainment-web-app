@@ -6,7 +6,7 @@ import Trending from "@/components/trending";
 import Recommended from "@/components/recommended";
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState<string | undefined>();
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   return (
     <>

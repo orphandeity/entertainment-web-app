@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import RootLayout from "@/components/layout";
+import RootLayout from "@/components/ui/layout";
 import { Outfit } from "next/font/google";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });

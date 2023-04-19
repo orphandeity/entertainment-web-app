@@ -1,12 +1,11 @@
+import { useState } from "react";
 import Head from "next/head";
 import SearchBar from "@/components/ui/search";
+import Movies from "@/components/movies";
 
-interface MoviesPropsI {
-  searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string | undefined>>;
-}
+export default function MoviesPage() {
+  const [movieSearch, setMovieSearch] = useState<string>("");
 
-export default function Movies({ searchQuery, setSearchQuery }: MoviesPropsI) {
   return (
     <>
       <Head>
@@ -16,12 +15,10 @@ export default function Movies({ searchQuery, setSearchQuery }: MoviesPropsI) {
       <main className="w-full overflow-hidden">
         <SearchBar
           placeholder="Search for movies"
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
+          searchQuery={movieSearch}
+          setSearchQuery={setMovieSearch}
         />
-        <section>
-          <h2>Movies</h2>
-        </section>
+        <Movies />
       </main>
     </>
   );
