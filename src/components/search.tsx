@@ -20,7 +20,7 @@ export default function SearchBar({
         className="w-full cursor-pointer border-transparent bg-transparent p-0 pb-1 text-base font-light caret-_red transition-colors selection:bg-_red placeholder:text-white/50 focus:border-transparent focus:border-b-_greyish-blue focus:ring-0 md:text-heading-md"
         placeholder={placeholder}
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onInput={(e) => setSearchQuery(e.currentTarget.value)}
       />
     </form>
   );

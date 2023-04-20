@@ -6,9 +6,16 @@ import SearchBar from "@/components/search";
 import MediaList from "@/components/mediaList";
 
 export default function TVSeriesPage() {
+  // tv series search query
   const [tvSearch, setTvSearch] = useState<string>("");
 
+  // tv series redux selector
   const tvSeries = useAppSelector(selectTVSeries);
+
+  // filter tv series by search query
+  const searchResults = tvSeries.filter((tv) =>
+    tv.title.toLowerCase().includes(tvSearch.trim().toLowerCase())
+  );
 
   return (
     <>
@@ -22,7 +29,14 @@ export default function TVSeriesPage() {
           searchQuery={tvSearch}
           setSearchQuery={setTvSearch}
         />
-        <MediaList heading="TV Series" media={tvSeries} />
+        {tvSearch ? (
+          <MediaList
+            heading={`Found ${searchResults.length} results for '${tvSearch}'`}
+            media={searchResults}
+          />
+        ) : (
+          <MediaList heading="TV Series" media={tvSeries} />
+        )}
       </main>
     </>
   );

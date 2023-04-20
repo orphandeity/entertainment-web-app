@@ -6,9 +6,16 @@ import SearchBar from "@/components/search";
 import MediaList from "@/components/mediaList";
 
 export default function MoviesPage() {
+  // movies search query
   const [movieSearch, setMovieSearch] = useState<string>("");
 
+  // movies redux selector
   const movies = useAppSelector(selectMovies);
+
+  // filter movies by search query
+  const searchResults = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(movieSearch.trim().toLowerCase())
+  );
 
   return (
     <>
@@ -22,7 +29,14 @@ export default function MoviesPage() {
           searchQuery={movieSearch}
           setSearchQuery={setMovieSearch}
         />
-        <MediaList heading="Movies" media={movies} />
+        {movieSearch ? (
+          <MediaList
+            heading={`Found ${searchResults.length} results for '${movieSearch}'`}
+            media={searchResults}
+          />
+        ) : (
+          <MediaList heading="Movies" media={movies} />
+        )}
       </main>
     </>
   );
