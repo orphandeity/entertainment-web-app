@@ -55,7 +55,9 @@ export default function Dashboard() {
           </li>
         </ul>
       </nav>
-      <Image src={user} alt="" className="h-auto w-6 md:w-8 lg:w-10" />
+      <Link href={"/signup"}>
+        <Image src={user} alt="" className="h-auto w-6 md:w-8 lg:w-10" />
+      </Link>
     </aside>
   );
 }

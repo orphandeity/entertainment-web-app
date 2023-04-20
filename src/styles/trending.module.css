@@ -5,7 +5,7 @@
   grid-template-rows: repeat(3, auto);
   width: 15rem;
   height: 8.75rem;
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 

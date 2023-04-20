@@ -1,0 +1,93 @@
+/* universal styles for signup and login */
+.auth {
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 3.65rem;
+  align-items: center;
+}
+
+/* logo */
+.auth > :first-child {
+  margin-top: 3rem;
+}
+
+/* container element */
+.auth > :nth-child(2) {
+  width: 20.4375rem;
+  background-color: var(--color-semi-dark-blue);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* form */
+.auth > :nth-child(2) > form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 2.5rem;
+  font-size: var(--font-body-md);
+  font-weight: var(--font-weight-light);
+}
+
+.auth form fieldset > :nth-child(-n + 2) {
+  margin-bottom: 1.5rem;
+}
+
+.auth form input {
+  width: 100%;
+  background-color: transparent;
+  caret-color: var(--color-red);
+  border-inline: none;
+  border-top: none;
+  border-bottom: 1px solid var(--color-greyish-blue);
+  padding: 0 0 1rem 1rem;
+}
+
+.auth form input::selection {
+  background-color: var(--color-red);
+}
+
+.auth form input:focus {
+  border-top: none;
+  border-inline: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  box-shadow: none;
+}
+
+/* heading */
+.auth > :nth-child(2) > form > :first-child {
+  font-size: var(--font-heading-lg);
+  font-weight: var(--font-weight-light);
+}
+
+/* action button */
+.auth button {
+  background-color: var(--color-red);
+  border-radius: var(--radius-xs);
+  font-size: var(--font-body-md);
+  font-weight: var(--font-weight-light);
+  padding-block: 0.875rem;
+}
+
+/* login link */
+.auth > :nth-child(2) > :last-child {
+  font-size: var(--font-body-md);
+  font-weight: var(--font-weight-light);
+}
+
+.auth > :nth-child(2) > :last-child span {
+  color: var(--color-red);
+}
+
+/* signup styles */
+.signup {
+}
+
+/* login styles */
+.login {
+}
