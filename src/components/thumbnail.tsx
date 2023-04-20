@@ -1,8 +1,10 @@
 import Image from "next/image";
-import useMediaQuery from "@/lib/useMediaQuery";
 import Hover from "./hover";
+import useMediaQuery from "@/lib/useMediaQuery";
 import { useAppDispatch } from "@/lib/redux";
 import { bookmark } from "@/lib/mediaSlice";
+import categoryMovie from "@/assets/icon-category-movie.svg";
+import categoryTv from "@/assets/icon-category-tv.svg";
 
 export default function Thumbnail({ data }: { data: IMedia }) {
   // redux dispatch action
@@ -41,7 +43,13 @@ export default function Thumbnail({ data }: { data: IMedia }) {
         <p className="flex items-center gap-2 text-[11px] font-light opacity-75 md:text-body-sm">
           <span>{data.year}</span>
           <span>•</span>
-          <span>{data.category}</span>
+          <span className="flex items-center gap-1">
+            <Image
+              src={data.category === "Movie" ? categoryMovie : categoryTv}
+              alt=""
+            />
+            {data.category}
+          </span>
           <span>•</span>
           <span>{data.rating}</span>
         </p>

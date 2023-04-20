@@ -18,6 +18,16 @@ export default function Bookmarks() {
     (media) => media.isBookmarked
   );
 
+  // all bookmarked media
+  const media = useAppSelector((state) =>
+    state.media.filter((m) => m.isBookmarked)
+  );
+
+  // filter bookmarked media by search query
+  const searchResults = media.filter((m) =>
+    m.title.toLowerCase().includes(bookmarkSearch.trim().toLowerCase())
+  );
+
   return (
     <>
       <Head>
@@ -30,10 +40,17 @@ export default function Bookmarks() {
           searchQuery={bookmarkSearch}
           setSearchQuery={setBookmarkSearch}
         />
-        <div className="flex flex-col gap-6 md:gap-12 lg:gap-10">
-          <MediaList heading="Bookmarked Movies" media={movies} />
-          <MediaList heading="Bookmarked TV Series" media={tvSeries} />
-        </div>
+        {bookmarkSearch ? (
+          <MediaList
+            heading={`Found ${searchResults.length} results for '${bookmarkSearch}'`}
+            media={searchResults}
+          />
+        ) : (
+          <div className="flex flex-col gap-6 md:gap-12 lg:gap-10">
+            <MediaList heading="Bookmarked Movies" media={movies} />
+            <MediaList heading="Bookmarked TV Series" media={tvSeries} />
+          </div>
+        )}
       </main>
     </>
   );

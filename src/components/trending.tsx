@@ -5,6 +5,8 @@ import { selectTrending } from "@/lib/mediaSlice";
 import useMediaQuery from "@/lib/useMediaQuery";
 import Image from "next/image";
 import Hover from "./hover";
+import categoryMovie from "@/assets/icon-category-movie.svg";
+import categoryTv from "@/assets/icon-category-tv.svg";
 
 export default function Trending() {
   const trending = useAppSelector(selectTrending);
@@ -52,7 +54,13 @@ const Thumbnail = ({ data }: { data: IMedia }) => {
           <p className="flex items-center gap-2 text-xs font-light opacity-75 md:text-body-md">
             <span>{data.year}</span>
             <span>•</span>
-            <span>{data.category}</span>
+            <span className="flex items-center gap-1">
+              <Image
+                src={data.category === "Movie" ? categoryMovie : categoryTv}
+                alt=""
+              />
+              {data.category}
+            </span>
             <span>•</span>
             <span>{data.rating}</span>
           </p>
