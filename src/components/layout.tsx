@@ -1,11 +1,11 @@
 import styles from "@/styles/dashboard.module.css";
 import Dashboard from "./dashboard";
 
-interface RootLayoutProps {
+interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div className={styles.layout}>
       <Dashboard />

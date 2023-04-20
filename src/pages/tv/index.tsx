@@ -1,3 +1,6 @@
+import type { NextPageWithLayout } from "../_app";
+import type { ReactElement } from "react";
+import DashboardLayout from "@/components/layout";
 import { useState } from "react";
 import { useAppSelector } from "@/lib/redux";
 import { selectTVSeries } from "@/lib/mediaSlice";
@@ -5,7 +8,7 @@ import Head from "next/head";
 import SearchBar from "@/components/search";
 import MediaList from "@/components/mediaList";
 
-export default function TVSeriesPage() {
+export const Page: NextPageWithLayout = () => {
   // tv series search query
   const [tvSearch, setTvSearch] = useState<string>("");
 
@@ -40,4 +43,10 @@ export default function TVSeriesPage() {
       </main>
     </>
   );
-}
+};
+
+Page.getLayout = function getLayout(page: ReactElement) {
+  return <DashboardLayout>{page}</DashboardLayout>;
+};
+
+export default Page;

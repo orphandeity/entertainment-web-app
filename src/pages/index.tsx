@@ -1,3 +1,6 @@
+import type { NextPageWithLayout } from "./_app";
+import type { ReactElement } from "react";
+import DashboardLayout from "@/components/layout";
 import { useState } from "react";
 import { useAppSelector } from "@/lib/redux";
 import { selectRecommended } from "@/lib/mediaSlice";
@@ -6,7 +9,7 @@ import SearchBar from "@/components/search";
 import Trending from "@/components/trending";
 import MediaList from "@/components/mediaList";
 
-export default function Home() {
+export const Page: NextPageWithLayout = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const recommended = useAppSelector(selectRecommended);
   const media = useAppSelector((state) => state.media);
@@ -37,4 +40,10 @@ export default function Home() {
       </main>
     </>
   );
-}
+};
+
+Page.getLayout = function getLayout(page: ReactElement) {
+  return <DashboardLayout>{page}</DashboardLayout>;
+};
+
+export default Page;

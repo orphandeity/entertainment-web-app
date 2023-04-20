@@ -1,3 +1,6 @@
+import type { NextPageWithLayout } from "../_app";
+import type { ReactElement } from "react";
+import DashboardLayout from "@/components/layout";
 import { useState } from "react";
 import { useAppSelector } from "@/lib/redux";
 import { selectMovies, selectTVSeries } from "@/lib/mediaSlice";
@@ -5,7 +8,7 @@ import Head from "next/head";
 import SearchBar from "@/components/search";
 import MediaList from "@/components/mediaList";
 
-export default function Bookmarks() {
+export const Page: NextPageWithLayout = () => {
   const [bookmarkSearch, setBookmarkSearch] = useState<string>("");
 
   // filter bookmarked movies
@@ -54,4 +57,10 @@ export default function Bookmarks() {
       </main>
     </>
   );
-}
+};
+
+Page.getLayout = function getLayout(page: ReactElement) {
+  return <DashboardLayout>{page}</DashboardLayout>;
+};
+
+export default Page;
