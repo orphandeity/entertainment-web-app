@@ -59,15 +59,16 @@
 
   .dashboard {
     flex-flow: column nowrap;
+    justify-content: flex-start;
     padding: 2rem;
     margin: 2rem;
     height: calc(100vh - 4rem);
     border-radius: var(--radius-lg);
   }
 
-  .dashboard :first-child {
+  .dashboard > :first-child {
     margin-right: 0;
-    margin-bottom: auto;
+    margin-bottom: 4.6875rem;
   }
 
   .dashboard :last-child {
