@@ -1,13 +1,9 @@
 import type { NextPageWithLayout } from "./_app";
 import type { ReactElement } from "react";
 import DashboardLayout from "@/components/layout";
-import { useState } from "react";
-import { useAppSelector } from "@/lib/redux";
-import { selectRecommended } from "@/lib/mediaSlice";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import SearchBar from "@/components/search";
-import Trending from "@/components/trending";
-import MediaList from "@/components/mediaList";
 import { GetServerSideProps } from "next";
 import { MovieList, TVList } from "@/components/tmdb/list";
 import TrendingTMDB from "@/components/tmdb/trendingTMDB";
@@ -17,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   let recommended;
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/movie/popular?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+      `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/tv/top_rated?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
     );
     const data = await res.json();
     recommended = data.results;
@@ -45,16 +41,28 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 export const Page: NextPageWithLayout<{
   trending: ITVSeries[];
-  recommended: IMovie[];
+  recommended: ITVSeries[];
 }> = ({ trending, recommended }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  // const recommended = useAppSelector(selectRecommended);
-  // const media = useAppSelector((state) => state.media);
+  const [searchResults, setSearchResults] = useState<ITVSeries[]>([]);
 
-  // const searchResults = media.filter((m) =>
-  //   m.title.toLowerCase().includes(searchQuery.trim().toLowerCase())
-  // );
+  useEffect(() => {
+    async function searchMulti() {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/search/tv?api_key=${
+          process.env.NEXT_PUBLIC_TMDB_API_KEY
+        }&query=${searchQuery.trim().toLowerCase()}&include_adult=false`
+      );
+      const data = await res.json();
+      setSearchResults(data.results);
+    }
+    try {
+      searchMulti();
+    } catch (error) {
+      console.error(error);
+    }
+  }, [searchQuery]);
 
   return (
     <>
@@ -64,19 +72,9 @@ export const Page: NextPageWithLayout<{
       </Head>
       <main className="w-full overflow-hidden">
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        {/* {searchQuery ? (
-          <MediaList
-            heading={`Found ${searchResults.length} results for '${searchQuery}'`}
-            media={searchResults}
-          />
-        ) : (
-          <>
-            <Trending />
-            <MediaList heading="Recommended for you" media={recommended} />
-          </>
-        )} */}
+
         <TrendingTMDB trending={trending} />
-        <MovieList heading="Recommended for you" media={recommended} />
+        <TVList heading="Top Rated TV Series" media={recommended} />
       </main>
     </>
   );

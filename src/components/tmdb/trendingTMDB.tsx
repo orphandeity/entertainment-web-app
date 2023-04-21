@@ -37,14 +37,14 @@ const Thumbnail = ({ data }: { data: ITVSeries }) => {
         {/* image caption */}
         <figcaption className="absolute bottom-0 z-50 flex w-full flex-col gap-1 bg-gradient-to-t from-black/75 p-4 md:p-6">
           <p className="flex items-center gap-2 text-xs font-light opacity-75 md:text-body-md">
-            <span>{data.first_air_date}</span>
+            <span>{data.first_air_date.slice(0, 4)}</span>
             <span>•</span>
             <span className="flex items-center gap-1">
               <Image src={categoryTv} alt="" />
               TV Series
             </span>
             <span>•</span>
-            <span>{data.original_language}</span>
+            <span>{data.original_language.toUpperCase()}</span>
           </p>
           <h3>{data.name}</h3>
         </figcaption>

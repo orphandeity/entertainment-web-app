@@ -4,7 +4,7 @@ import type { ReactElement } from "react";
 import DashboardLayout from "@/components/layout";
 import Head from "next/head";
 import SearchBar from "@/components/search";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MovieList } from "@/components/tmdb/list";
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -31,6 +31,25 @@ export const Page: NextPageWithLayout<{ movies: IMovie[] }> = ({ movies }) => {
   // movies search query
   const [movieSearch, setMovieSearch] = useState<string>("");
 
+  const [searchResults, setSearchResults] = useState<IMovie[]>([]);
+
+  useEffect(() => {
+    async function searchMovies() {
+      // TMDB requires all search queries to be URI encoded
+      const query = encodeURI(movieSearch.trim().toLowerCase());
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/search/movie?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&query=${query}&include_adult=false`
+      );
+      const data = await res.json();
+      setSearchResults(data.results);
+    }
+    try {
+      searchMovies();
+    } catch (error) {
+      console.error(error);
+    }
+  }, [movieSearch]);
+
   return (
     <>
       <Head>
@@ -43,8 +62,16 @@ export const Page: NextPageWithLayout<{ movies: IMovie[] }> = ({ movies }) => {
           searchQuery={movieSearch}
           setSearchQuery={setMovieSearch}
         />
-
-        <MovieList heading="Movies" media={movies} />
+        {movieSearch ? (
+          <MovieList
+            heading={`Found ${
+              searchResults.length
+            } results for '${movieSearch.trim()}'`}
+            media={searchResults}
+          />
+        ) : (
+          <MovieList heading="Movies" media={movies} />
+        )}
       </main>
     </>
   );

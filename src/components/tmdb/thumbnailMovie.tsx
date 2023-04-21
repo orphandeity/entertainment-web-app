@@ -4,21 +4,14 @@ import useMediaQuery from "@/lib/useMediaQuery";
 import categoryMovie from "@/assets/icon-category-movie.svg";
 
 export default function ThumbnailMovie({ data }: { data: IMovie }) {
-  // media query booleans
-  const tablet = useMediaQuery("(min-width: 768px)");
-  const desktop = useMediaQuery("(min-width: 1440px)");
+  const image = `${process.env.NEXT_PUBLIC_TMDB_IMAGE_URL}${data.backdrop_path}`;
 
   return (
     <figure className="flex w-[10.25rem] flex-col gap-2 md:w-[13.75rem] lg:w-[17.5rem]">
       {/* hover component provides overlay with play button */}
       <Hover>
         <div className="relative h-[6.875rem]  overflow-hidden rounded-lg md:h-[8.75rem] lg:h-[10.875rem]">
-          <Image
-            src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_URL}${data.backdrop_path}`}
-            alt=""
-            fill
-            className="object-cover"
-          />
+          <Image src={image} alt="" fill className="object-cover" />
 
           {/* bookmark button */}
           <div className="absolute right-2 top-2 z-50 grid h-8 w-8 cursor-pointer place-content-center rounded-full bg-_dark-blue/50 transition-all hover:bg-white hover:text-_dark-blue md:right-4 md:top-4">
@@ -30,14 +23,14 @@ export default function ThumbnailMovie({ data }: { data: IMovie }) {
       {/* image caption */}
       <figcaption className="z-50 flex flex-col gap-[0.3125rem]">
         <p className="flex items-center gap-2 text-[11px] font-light opacity-75 md:text-body-sm">
-          <span>{data.release_date}</span>
+          <span>{data.release_date.slice(0, 4)}</span>
           <span>•</span>
           <span className="flex items-center gap-1">
             <Image src={categoryMovie} alt="" />
             Movie
           </span>
           <span>•</span>
-          <span>{data.original_language}</span>
+          <span>{data.original_language.toUpperCase()}</span>
         </p>
         <h4 className="truncate text-sm font-medium md:text-lg">
           {data.title}
