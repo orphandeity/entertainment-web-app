@@ -26,7 +26,7 @@ export const Page: NextPageWithLayout = () => {
         <title>TV Series | Entertainment Web App</title>
         <meta name="description" content="Frontend Mentor Challenge Project" />
       </Head>
-      <main className="w-full overflow-hidden">
+      <main className="w-full overflow-hidden lg:h-screen lg:overflow-y-scroll">
         <SearchBar
           placeholder="Search for TV series"
           searchQuery={tvSearch}
