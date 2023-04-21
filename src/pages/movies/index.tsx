@@ -1,20 +1,18 @@
-import Head from "next/head";
+import type { GetServerSideProps } from "next";
 import type { NextPageWithLayout } from "../_app";
 import type { ReactElement } from "react";
 import DashboardLayout from "@/components/layout";
+import Head from "next/head";
 import SearchBar from "@/components/search";
-import MediaList from "@/components/mediaList";
 import { useState } from "react";
-import { useAppSelector } from "@/lib/redux";
-import { selectMovies } from "@/lib/mediaSlice";
-import type { GetServerSideProps } from "next";
 import { MovieList } from "@/components/tmdb/list";
 
 export const getServerSideProps: GetServerSideProps = async () => {
+  // populate page with data from TMDB api
   let movies;
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/trending/movie/week?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+      `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/trending/movie/day?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
     );
     const data = await res.json();
     movies = data.results;
@@ -33,13 +31,6 @@ export const Page: NextPageWithLayout<{ movies: IMovie[] }> = ({ movies }) => {
   // movies search query
   const [movieSearch, setMovieSearch] = useState<string>("");
 
-  // // movies redux selector
-  // const movies = useAppSelector(selectMovies);
-  // // filter movies by search query
-  // const searchResults = movies.filter((movie) =>
-  //   movie.title.toLowerCase().includes(movieSearch.trim().toLowerCase())
-  // );
-
   return (
     <>
       <Head>
@@ -52,14 +43,7 @@ export const Page: NextPageWithLayout<{ movies: IMovie[] }> = ({ movies }) => {
           searchQuery={movieSearch}
           setSearchQuery={setMovieSearch}
         />
-        {/* {movieSearch ? (
-          <MediaList
-            heading={`Found ${searchResults.length} results for '${movieSearch}'`}
-            media={searchResults}
-          />
-        ) : (
-          <MediaList heading="Movies" media={movies} />
-        )} */}
+
         <MovieList heading="Movies" media={movies} />
       </main>
     </>

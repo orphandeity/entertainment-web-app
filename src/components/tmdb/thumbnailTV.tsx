@@ -1,13 +1,8 @@
 import Image from "next/image";
 import Hover from "@/components/hover";
-import useMediaQuery from "@/lib/useMediaQuery";
-import categoryMovie from "@/assets/icon-category-movie.svg";
+import categoryTV from "@/assets/icon-category-tv.svg";
 
-export default function ThumbnailMovie({ data }: { data: IMovie }) {
-  // media query booleans
-  const tablet = useMediaQuery("(min-width: 768px)");
-  const desktop = useMediaQuery("(min-width: 1440px)");
-
+export default function ThumbnailTV({ data }: { data: ITVSeries }) {
   return (
     <figure className="flex w-[10.25rem] flex-col gap-2 md:w-[13.75rem] lg:w-[17.5rem]">
       {/* hover component provides overlay with play button */}
@@ -30,18 +25,16 @@ export default function ThumbnailMovie({ data }: { data: IMovie }) {
       {/* image caption */}
       <figcaption className="z-50 flex flex-col gap-[0.3125rem]">
         <p className="flex items-center gap-2 text-[11px] font-light opacity-75 md:text-body-sm">
-          <span>{data.release_date}</span>
+          <span>{data.first_air_date}</span>
           <span>•</span>
           <span className="flex items-center gap-1">
-            <Image src={categoryMovie} alt="" />
+            <Image src={categoryTV} alt="" />
             Movie
           </span>
           <span>•</span>
           <span>{data.original_language}</span>
         </p>
-        <h4 className="truncate text-sm font-medium md:text-lg">
-          {data.title}
-        </h4>
+        <h4 className="truncate text-sm font-medium md:text-lg">{data.name}</h4>
       </figcaption>
     </figure>
   );
